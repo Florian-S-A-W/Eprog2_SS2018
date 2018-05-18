@@ -3,7 +3,6 @@ public class Song {
     private String titel;
     private String band;
     private long laenge;
-    public Song next;
 
     public Song(String titel, String band, long laenge) {
         this.titel = titel;
@@ -27,5 +26,15 @@ public class Song {
         System.out.printf("%s: %s (%d s)", this.band, this.titel, this.laenge);
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Song) {
+            Song song = (Song)obj;
+            return (song.getTitel() == this.titel &&
+                    song.getBand() == this.band &&
+                    song.getLaenge() == this.laenge);
+        } else {
+            return false;
+        }
+    }
 }
