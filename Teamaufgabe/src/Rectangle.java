@@ -62,4 +62,5 @@ public class Rectangle {
     private boolean lineSegmentsIntersect(double lStart, double lEnd, double rStart, double rEnd) {
         return Math.max(lStart, rStart) <= Math.min(lEnd, rEnd);
     }
+
 }
