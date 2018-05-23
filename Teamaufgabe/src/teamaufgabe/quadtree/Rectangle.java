@@ -1,8 +1,9 @@
+package teamaufgabe.quadtree;
 
 public class Rectangle {
 
-    Point origin;
-    Size size;
+    private Point origin;
+    private Size size;
 
     public Rectangle(Point origin, Size size) {
         this.origin = origin;
@@ -10,24 +11,24 @@ public class Rectangle {
     }
 
     public double minX() {
-        return this.origin.x;
+        return this.origin.getX();
     }
 
     public double minY() {
-        return origin.y;
+        return origin.getY();
     }
 
     public double maxX() {
-        return origin.x + size.xLength;
+        return origin.getX() + size.getxLength();
     }
 
     public double maxY() {
-        return origin.y + size.yLength;
+        return origin.getY() + size.getyLength();
     }
 
     public boolean contains(Point point) {
-        return (this.minX() <= point.x && point.x <= this.maxX()) &&
-                (this.minY() <= point.y && point.y <= this.maxY());
+        return (this.minX() <= point.getX() && point.getX() <= this.maxX()) &&
+                (this.minY() <= point.getY() && point.getY() <= this.maxY());
     }
 
     public Rectangle leftTopRectangle() {
@@ -35,15 +36,15 @@ public class Rectangle {
     }
 
     public Rectangle leftBottomRectangle() {
-        return new Rectangle(new Point(origin.x, origin.y + this.size.half().yLength), size.half());
+        return new Rectangle(new Point(origin.getX(), origin.getY() + this.size.half().getyLength()), size.half());
     }
 
     public Rectangle rightTopRectangle() {
-        return new Rectangle(new Point(origin.x + size.half().xLength, origin.y), this.size.half());
+        return new Rectangle(new Point(origin.getX() + size.half().getxLength(), origin.getY()), this.size.half());
     }
 
     public Rectangle rightBottomRectangle() {
-        return new Rectangle(new Point(origin.x + size.half().xLength, origin.y + size.half().yLength), size.half());
+        return new Rectangle(new Point(origin.getX() + size.half().getxLength(), origin.getY() + size.half().getyLength()), size.half());
     }
 
     public boolean intersects(Rectangle rect){
@@ -63,4 +64,8 @@ public class Rectangle {
         return Math.max(lStart, rStart) <= Math.min(lEnd, rEnd);
     }
 
+    @Override
+    public String toString() {
+        return "Rect(" + origin + ", " + size + ")";
+    }
 }
