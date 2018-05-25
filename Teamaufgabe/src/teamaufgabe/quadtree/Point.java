@@ -4,6 +4,15 @@ public class Point {
 
     private double x;
     private double y;
+    private String type;
+    private String name;
+
+    public Point(double x, double y, String name, String type) {
+        this.x = x;
+        this.y = y;
+        this.name = name;
+        this.type = type;
+    }
 
     public Point(double x, double y) {
         this.x = x;
@@ -15,15 +24,17 @@ public class Point {
     }
 
     public double getX() {
-        return x;
+        return this.x;
     }
 
     public double getY() {
-        return y;
+        return this.y;
     }
+
+    public String getType() { return this.type; }
 
     @Override
     public String toString() {
-        return "teamaufgabe.quadtree.Point(" + x + ", " + y + ")";
+        return name + ", a " + type + " at(" + x + ", " + y + ")";
     }
 }
