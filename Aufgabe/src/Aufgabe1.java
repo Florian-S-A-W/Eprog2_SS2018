@@ -8,35 +8,35 @@ public class Aufgabe1{
         Song s2 = new Song("b2","b2",2);
         Song s3 = new Song("c3","b3",3);
         Song s4 = new Song("d4","b4",4);
+        Song s5 = new Song("e5","b1",1);
+        Song s6 = new Song("f6","b2",2);
+        Song s7 = new Song("g7","b3",3);
+        Song s8 = new Song("h8","b4",4);
+        Song s9 = new Song("i9","b1",1);
+        Song s10 = new Song("iA","b2",2);
+        Song s11 = new Song("jB","b3",3);
+        Song s12 = new Song("kC","b4",4);
 
-        SongTree1 tree = new SongTree1();
-        tree.add(s1);
-        tree.add(s2);
-        tree.print();
-        tree.add(s3);
-        tree.add(s4);
-        tree.print();
+        SongTable table = new SongTable(11);
 
-        System.out.println(tree.toString());
+        table.add(s1);
+        table.add(s2);
+        table.add(s3);
+        table.add(s4);
+        table.add(s5);
+        table.add(s6);
+        table.add(s7);
+        table.add(s8);
+        table.add(s9);
+        table.add(s10);
+        table.add(s11);
+        table.add(s12);
+
+        table.print();
     }
 
     /*
 
-    a) Man kann mit dem Rückgabewert leicht einen Null-Node durch einen besetzten ersetzen. Ohne Rückgabewert wäre das schwerer,
-    sofern man nicht prüfen darf ob der Unterbaum ein Null-Node ist. Man könnte zum Beispiel die add Funktion überladen um das
-    Problem zu lösen.
-
-    b) Beim print Aufruf weird bei den binary nodes immer der Song geprintet wenn print eines Childs aufgerufen wird. Ist es ein
-    Null-Node wird nichts gemacht. Bei add wird bei Binary Nodes weitergegangen und der Song eingefügt wenn ein Null Node erreicht ist,
-    also wenn dort add() aufgerufen wird.
-
-    c) Ich habe SongTree nicht implementiert da ich leider an der letzten Übung nicht teilnehmen konnte.
-    Tatsächlich sehe ich keine Vorteile, Nachteil ist dass es mühsamer zu implementieren ist. Theoretisch braucht SongTree1 mehr Speicher, aber so
-    wenig dass es egal ist.
-
-    2. a) Ich habe es hinzugefügt, da es übersichtlicher ist.
-
-        b) print führt direkt die print Operation aus und toString gibt einen String zurück.
 
 
      */

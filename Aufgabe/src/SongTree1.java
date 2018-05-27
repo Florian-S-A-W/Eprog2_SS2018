@@ -1,5 +1,5 @@
 
-public class SongTree1 {
+public class SongTree1 implements Iterable<Song> {
 
     SongTreeNodable root;
 
@@ -21,16 +21,35 @@ public class SongTree1 {
         return this.root.toString();
     }
 
+
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof SongTree1) {
-            Song song = (Song)obj;
-            return (song.getTitel() == this.titel &&
-                    song.getBand() == this.band &&
-                    song.getLaenge() == this.laenge);
-        } else {
-            return false;
-        }
+    public boolean hasNext() {
+        return false;
     }
 
+    @Override
+    public Song next() {
+        return null;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return null;
+    }
+
+    public class SongTreeIterator implements Iterator<Song> {
+
+        private int index = 0;
+        private Song song;
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public Song next() {
+            return null;
+        }
+    }
 }

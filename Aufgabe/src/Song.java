@@ -4,6 +4,9 @@ public class Song {
     private String band;
     private long laenge;
 
+    public Song next;
+    public int key;
+
     public Song(String titel, String band, long laenge) {
         this.titel = titel;
         this.band = band;
@@ -26,6 +29,8 @@ public class Song {
         System.out.printf("%s: %s (%d s)", this.band, this.titel, this.laenge);
     }
 
+    public String toString() {return this.band + ": " + this.titel + ", " + this.laenge + "s"; }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Song) {
@@ -37,4 +42,6 @@ public class Song {
             return false;
         }
     }
+
+
 }
