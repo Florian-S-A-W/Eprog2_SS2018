@@ -126,8 +126,9 @@ public class QuadtreeNode implements PointsContainer {
                     return true;
                 }
             }
+            return false;
 
-            // TODO: Crash? Throw?
+
         } else {
             points.add(point);
             if (points.size() == QuadtreeNode.MAX_LOCATION_CAPACITY) {
@@ -183,9 +184,9 @@ public class QuadtreeNode implements PointsContainer {
     private void subdivide() {
         if (!hasChildren) {
             hasChildren = true;
-            children = new QuadtreeNodeChildren(this);
+            this.children = new QuadtreeNodeChildren(this);
         } else {
-            // TODO: Crash? Throw?
+            return;
         }
     }
 }

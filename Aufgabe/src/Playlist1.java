@@ -1,15 +1,15 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Playlist1 {
 
     public Song firstSong;
 
-    /*
-    * 1. Frage: Macht es Sinn "laenge" im Konstruktor zu behalten?
-    *
-    * Nein, da die Linked List, bzw Playlist ja nur die Referenz zum letzten Objekt in der Liste enthält.
-    * Die Anzahl der Elemente ist in einer Linked List dynamisch und nicht von der Linked-List Klasse abhängig.
-    * */
 
-    public Playlist1(int laenge) {
+    public Playlist1() {
 
         this.firstSong = null;
     }
@@ -31,6 +31,36 @@ public class Playlist1 {
             currentSong = currentSong.next;
         }
 
+    }
+
+    public Playlist1(String filename) {
+
+        try(Scanner s = new Scanner(
+                new File(System.getProperty(filename)), "UTF-8")) {
+            s.useDelimiter(System.getProperty("line.separator"));
+            while(s.hasNextLine()){
+                if (s.hasNext()) {
+                    String line = s.next();
+                    String[] parts = line.split(";");
+                    if (parts.length != 3) {
+                        throw new IOException();
+                    } else {
+                        String title = parts[0];
+                        String band = parts[1];
+                        long laenge = Long.valueOf(parts[2]);
+                        Song newSong = new Song(title, band, laenge);
+                        this.add(newSong);
+                    }
+                } else {
+                    break;
+                }
+            }
+            s.close();
+        } catch(FileNotFoundException e) {
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -147,6 +177,54 @@ public class Playlist1 {
         }
 
         return currentSong;
+
+    }
+
+    void save(String filename) {
+
+        FileWriter fileWriter = null;
+
+        try {
+            fileWriter = new FileWriter(filename);
+
+            Song currentSong = this.firstSong;
+
+            if(!this.isEmpty()){
+
+                while(currentSong != null) {
+
+                    fileWriter.append(currentSong.getTitel());
+                    fileWriter.append(";");
+                    fileWriter.append(currentSong.getBand());
+                    fileWriter.append(";");
+                    fileWriter.append(String.valueOf(currentSong.getLaenge()));
+                    fileWriter.append("\n");
+
+                    if(currentSong.next == null) {
+
+                        break;
+
+                    } else {
+
+                        currentSong = currentSong.next;
+
+                    }
+
+                }
+
+            }   else { return; }
+
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 

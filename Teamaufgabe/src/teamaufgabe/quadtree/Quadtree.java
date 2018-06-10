@@ -38,7 +38,9 @@ public class Quadtree implements PointsContainer {
 
     @Override
     public boolean add(Point point) {
-        return root.add(point);
+        if (root.add(point)) {
+            return true;
+        } else return false;
     }
 
     /**
@@ -75,13 +77,12 @@ public class Quadtree implements PointsContainer {
      */
 
     public ArrayList<Point> pointsInCircle(Point center, double radius) {
-        Point origin = new Point(center.getX() + radius, center.getY() + radius);
+        Point origin = new Point(center.getX() - radius, center.getY() - radius);
         Rectangle circRect = new Rectangle(origin, new Size(2* radius, 2* radius));
         ArrayList<Point> pointsInRect = this.points(circRect);
-        System.out.println(pointsInRect.toString());
         ArrayList<Point> inCircle = new ArrayList<>();
         pointsInRect.forEach(point -> {
-            if (origin.distanceTo(point) <= radius) {
+            if (point.distanceTo(center) <= radius) {
                 inCircle.add(point);
             }
         });
@@ -102,11 +103,31 @@ public class Quadtree implements PointsContainer {
         ArrayList<Point> pointsInCircle = this.pointsInCircle(origin, radius);
         ArrayList<Point> typeMatch = new ArrayList<>();
         pointsInCircle.forEach(point -> {
-            if (Objects.equals(point.getType(), type)) {
+            if (point.getType().equals(type)) {
                 typeMatch.add(point);
             }
         });
         return typeMatch;
+    }
+
+    /**
+     * Finds all airports that are near a given number of trainstations
+     * in a given circle around the airport, by finding all airports, and
+     * then traversing through them.
+     *
+     * @param radius The radius of the circle
+     * @param number The number of trainstations near the airport
+     * @return the total number of airports the fit the requirements
+     */
+    public int trainstationsNearAirports(double radius, int number) {
+        ArrayList<Point> airports = specificTypeInCircle(new Point(0.0,0.0), 35000.0, "AIRPORT");
+        int counter = 0;
+        for (Point airport: airports) {
+            if(specificTypeInCircle( airport, radius, "TRAINSTATION").size() >= number) {
+                counter++;
+            };
+        }
+        return counter;
     }
 
 

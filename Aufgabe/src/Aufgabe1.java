@@ -17,22 +17,22 @@ public class Aufgabe1{
         Song s11 = new Song("jB","b3",3);
         Song s12 = new Song("kC","b4",4);
 
-        SongTable table = new SongTable(11);
+        Playlist1 list = new Playlist1();
 
-        table.add(s1);
-        table.add(s2);
-        table.add(s3);
-        table.add(s4);
-        table.add(s5);
-        table.add(s6);
-        table.add(s7);
-        table.add(s8);
-        table.add(s9);
-        table.add(s10);
-        table.add(s11);
-        table.add(s12);
+        list.add(s1);
+        list.add(s2);
+        list.add(s3);
+        list.add(s4);
+        list.add(s5);
+        list.add(s6);
+        list.add(s7);
+        list.add(s8);
+        list.add(s9);
+        list.add(s10);
+        list.add(s11);
+        list.add(s12);
 
-        table.print();
+        list.print();
     }
 
     /*
