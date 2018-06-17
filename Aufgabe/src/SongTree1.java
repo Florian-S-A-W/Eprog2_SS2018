@@ -1,5 +1,5 @@
 
-public class SongTree1 implements Iterable<Song> {
+public class SongTree1 {
 
     SongTreeNodable root;
 
@@ -7,7 +7,19 @@ public class SongTree1 implements Iterable<Song> {
         this.root = new SongTree1Null();
     }
 
-    public void add(Song song) {
+    /**
+     * Adds a song to the binary tree
+     *
+     * @param song a new song that shall be added to the tree
+     * @throws IllegalArgumentException song == null
+     *
+     * Postcondition: The song is in the tree if it is not null
+     */
+    public void add(Song song) throws IllegalArgumentException {
+
+        if(song == null) {
+            throw new IllegalArgumentException();
+        }
 
         this.root = this.root.add(song);
 
@@ -21,35 +33,4 @@ public class SongTree1 implements Iterable<Song> {
         return this.root.toString();
     }
 
-
-    @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public Song next() {
-        return null;
-    }
-
-    @Override
-    public Iterator iterator() {
-        return null;
-    }
-
-    public class SongTreeIterator implements Iterator<Song> {
-
-        private int index = 0;
-        private Song song;
-
-        @Override
-        public boolean hasNext() {
-            return false;
-        }
-
-        @Override
-        public Song next() {
-            return null;
-        }
-    }
 }

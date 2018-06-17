@@ -1,6 +1,9 @@
 
 public class SongTree1Binary implements SongTreeNodable {
 
+    /**
+     * Invariant: song is not null
+     */
     private Song song;
     public SongTreeNodable left, right;
 
